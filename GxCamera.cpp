@@ -182,7 +182,7 @@ namespace d5vs {
 			// ·¢ËÍ²É¼¯ÃüÁî
 			_deviceFeatureControlPtr->GetCommandFeature("AcquisitionStart")->Execute();
 			_deviceIsSnap = true;
-			Sleep(50);
+			Sleep(100);
 		}
 		catch (CGalaxyException& e)
 		{

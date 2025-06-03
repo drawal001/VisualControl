@@ -10,5 +10,5 @@ namespace d5vs {
 	float GetMapParam(cv::Mat img, cv::Size size, float realDis);
 	HalconCpp::HObject Mat2HImage(cv::Mat img);
 	cv::Mat HImage2Mat(HalconCpp::HObject img);
-	void GetAndSaveImg(GxCamera* camera);
+	void GetAndSaveImg(GxCamera& camera);
 }

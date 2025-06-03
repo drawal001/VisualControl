@@ -92,8 +92,9 @@ namespace d5vs {
 	 *             回车 -- 开始记录视频，再按一次停止记录
 	 * @param camera
 	 */
-	void GetAndSaveImg(GxCamera* camera) {
+	void GetAndSaveImg(GxCamera& camera) {
 		std::string winName = "camera";
+		cv::namedWindow(winName, cv::WINDOW_NORMAL);
 		auto now = std::chrono::system_clock::now();
 		auto ms = std::chrono::duration_cast<std::chrono::microseconds>(now.time_since_epoch()).count();
 		std::string path = "./images/" + std::to_string(ms);
@@ -104,8 +105,9 @@ namespace d5vs {
 		cv::Mat img;
 		int key;
 		while (1) {
-			img = camera->Read();
+			img = camera.Read();
 			cv::imshow(winName, img);
+			cv::resizeWindow(winName, img.cols / 2, img.rows / 2);
 			key = cv::waitKey(1);
 			if (key == 27) break;
 			if (key == 32) {
@@ -123,7 +125,7 @@ namespace d5vs {
 				int count = 0;
 				while (1) {
 					if (cv::waitKey(1) == 13) break;
-					img = camera->Read();
+					img = camera.Read();
 					cv::imshow(winName, img);
 					cv::imwrite(subDir + "/" + std::to_string(count++) + ".png", img);
 				}
