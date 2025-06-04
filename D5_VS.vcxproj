@@ -135,13 +135,14 @@
   <ItemGroup>
     <ClInclude Include="GxCamera.h" />
     <ClInclude Include="utils.h" />
-    <ClInclude Include="vc.h" />
+    <ClInclude Include="LibraryVision.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GxCamera.cpp" />
+    <ClInclude Include="modify.hpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="utils.cpp" />
-    <ClCompile Include="vc.cpp" />
+    <ClCompile Include="LibraryVision.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -21,10 +21,13 @@
     <ClInclude Include="GxCamera.h">
       <Filter>lib</Filter>
     </ClInclude>
-    <ClInclude Include="vc.h">
+    <ClInclude Include="LibraryVision.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="utils.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="modify.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -35,7 +38,7 @@
     <ClCompile Include="test.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="vc.cpp">
+    <ClCompile Include="LibraryVision.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="utils.cpp">
