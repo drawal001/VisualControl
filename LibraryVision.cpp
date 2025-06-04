@@ -2,7 +2,7 @@
 
 namespace d5vs {
 
-	LibraryVision::LibraryVision() : _libWidth(450), _libHigh(650) {
+	LibraryVision::LibraryVision() : _libWidth(450), _libHigh(650), _mapParam(0.0115369) {
 		// posTemp
 		_libMin.posTempImg = cv::imread("./models/posTemp/postempmin.png", cv::IMREAD_GRAYSCALE);
 		_libMid.posTempImg = cv::imread("./models/posTemp/postempmid.png", cv::IMREAD_GRAYSCALE);

@@ -3,6 +3,8 @@
 #include <opencv2/core.hpp>
 #include <set>
 #include <iostream>
+#include <mutex>
+
 namespace d5vs {
 
 	class GxCamera
@@ -63,6 +65,8 @@ namespace d5vs {
 
 		//std::unique_ptr<void> _pFrameBuffer;
 		cv::Mat _lastFrame{};  //最后一帧图片
+
+		std::mutex frameMutex{};  // lastFrame 的读写锁
 	};
 }
 

@@ -235,6 +235,8 @@ namespace d5vs {
 	 * @return ª“∂»Õº
 	 */
 	cv::Mat GxCamera::Read() {
+		std::lock_guard<std::mutex> lock(frameMutex);
+
 		if (_lastFrame.empty())
 			throw std::runtime_error("Œ¥∂¡»°µΩÕº∆¨");
 
@@ -246,15 +248,14 @@ namespace d5vs {
 	 * @param imgPtr
 	 */
 	void GxCamera::_SaveLastPictureToMat(CImageDataPointer& imgPtr) {
+        std::lock_guard<std::mutex> lock(frameMutex);
+
 		if (GX_FRAME_STATUS_SUCCESS == imgPtr->GetStatus()) {
 			int width = static_cast<int>(imgPtr->GetWidth());
 			int height = static_cast<int>(imgPtr->GetHeight());
 			void* imgBuffer = imgPtr->GetBuffer();
-			//void* pRaw8Buffer = nullptr;
-			//_pFrameBuffer = std::make_unique<void>(imgPtr->ConvertToRaw8(GX_BIT_0_7));
-			//_lastFrame = cv::Mat(height, width, CV_8U, _pFrameBuffer.get());
-			_lastFrame = cv::Mat(height, width, CV_8U, imgBuffer).clone();
-
+			if (imgBuffer != nullptr)
+				_lastFrame = cv::Mat(height, width, CV_8U, imgBuffer);
 		}
 	}
 }
