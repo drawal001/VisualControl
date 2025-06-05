@@ -255,7 +255,10 @@ namespace d5vs {
 			int height = static_cast<int>(imgPtr->GetHeight());
 			void* imgBuffer = imgPtr->GetBuffer();
 			if (imgBuffer != nullptr)
-				_lastFrame = cv::Mat(height, width, CV_8U, imgBuffer);
+			{
+				cv::Mat temp = cv::Mat(height, width, CV_8U, imgBuffer);
+				_lastFrame = temp.clone();  // 克隆一份到 _lastFrame
+			}
 		}
 	}
 }
