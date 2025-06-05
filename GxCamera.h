@@ -4,6 +4,7 @@
 #include <set>
 #include <iostream>
 #include <mutex>
+#include <atomic>
 
 namespace d5vs {
 
@@ -67,6 +68,7 @@ namespace d5vs {
 		cv::Mat _lastFrame{};  //最后一帧图片
 
 		std::mutex frameMutex{};  // lastFrame 的读写锁
+		std::atomic<bool> isProcessing = false;
 	};
 }
 

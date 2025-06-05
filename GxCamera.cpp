@@ -248,14 +248,17 @@ namespace d5vs {
 	 * @param imgPtr
 	 */
 	void GxCamera::_SaveLastPictureToMat(CImageDataPointer& imgPtr) {
-        std::lock_guard<std::mutex> lock(frameMutex);
+		if (isProcessing.exchange(true)) return;
+		std::lock_guard<std::mutex> lock(frameMutex);
 
 		if (GX_FRAME_STATUS_SUCCESS == imgPtr->GetStatus()) {
 			int width = static_cast<int>(imgPtr->GetWidth());
 			int height = static_cast<int>(imgPtr->GetHeight());
 			void* imgBuffer = imgPtr->GetBuffer();
-			if (imgBuffer != nullptr)
-				_lastFrame = cv::Mat(height, width, CV_8U, imgBuffer);
+			if (imgBuffer != nullptr) {
+				cv::Mat temp = cv::Mat(height, width, CV_8U, imgBuffer);
+				_lastFrame = temp.clone();
+			}
 		}
 	}
 }
